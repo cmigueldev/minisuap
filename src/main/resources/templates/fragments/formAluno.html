@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div th:fragment="formAluno" class="form">
+        
+            <label for="idNome">Nome:</label>
+            <input type="text" id="idNome" th:field="*{nome}" placeholder="Informe o seu nome" required/>
+            <br>
+
+            <label for="idMatricula">Matrícula:</label>
+            <input type="text" id="idMatricula" th:field="*{matricula}" placeholder="Informe sua matrícula" required/>
+            <br>
+
+            <label for="idDataNascimento">Data de Nascimento:</label>
+            <input type="date" id="idDataNascimento" th:field="*{dataNascimento}" placeholder="Informe sua data Nascimento" required/>
+            <br>
+
+            <label for="idCRE">CRE:</label>
+            <input type="number" id="idCRE" th:field="*{CRE}" min="0" max="100"/>
+            <br>
+
+        
+    </div>
+    
+</body>
+</html>

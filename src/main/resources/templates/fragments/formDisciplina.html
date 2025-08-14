@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div th:fragment="formDisciplina" class="form">
+
+           <label for="idNome">Nome:</label>
+           <input type="text" id="idNome" th:field="*{nome}" placeholder="informe o nome da disciplina" required>
+
+           <br>
+
+           <label for="idCodigo">Código:</label>
+           <input type="text" id="idCodigo" th:field="*{codigo}" placeholder="informe o código da disciplina" required>
+
+            <br>
+           <label for="idCargaHoraria">Carga Horária:</label>
+           <input type="number" id="idCargaHoraria" th:field="*{cargaHoraria}" placeholder="informe a carga horária da disciplina" required>
+
+           <br>
+           <label for="idEmenta">Ementa:</label>
+           <textarea id="idEmenta" th:field="*{ementa}" placeholder="informe a ementa da disciplina" required></textarea>
+
+           <br>
+           <label for="idCreditos">Créditos:</label>
+           <input type="text" id="idCreditos" th:field="*{creditos}" placeholder="informe a quantidade de créditos da disciplina" required>
+    </div>
+</body>
+</html> 

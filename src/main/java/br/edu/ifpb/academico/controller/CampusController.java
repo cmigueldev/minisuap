@@ -48,7 +48,7 @@ public class CampusController {
 	//levar para pagina de edição do curso indicado pelo id
 	@GetMapping("/edit/{id}")
 	public String editCampus(@PathVariable Long id, Model model) {
-		Campus campus = campusService.findById(id);
+		Campus campus = campusService.findByIdWithCursos(id);
 		model.addAttribute("campus", campus);
 		return "editarCampus";
 	}

@@ -14,4 +14,10 @@ public interface CursoRepository extends JpaRepository<Curso, Long> {
 	 */
 	boolean existsByCodigo(String codigo);
 
+	// achar o curso pelo nome
+	Curso findByNome(String nome);
+
+	// verificar se existe curso em um campus
+	boolean existsByCampusId(Long campusId);
+
 }

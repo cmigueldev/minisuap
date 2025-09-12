@@ -37,4 +37,9 @@ public class CampusService {
 		return CampusRepository.existsByNome(nome);
 	}
 
+	// retorna um campus com seus cursos associados
+	public Campus findByIdWithCursos(Long id) {
+		return CampusRepository.findByIdWithCursos(id);
+	}
+
 }

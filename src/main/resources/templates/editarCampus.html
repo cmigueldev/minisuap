@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Campus</title>
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <script src="/js/menu.js"></script>
+</head>
+<body>
+
+    <div th:insert="fragments/barraNavegacao :: navbar"></div>
+
+    <br>
+
+    <div>
+        <h1>Editar Campus</h1>
+    </div>
+
+    <form th:action="@{/campus/edit}" th:object="${campus}" method="post">
+        <br>
+
+        <input type="hidden" id="idId" th:field="*{id}" />
+        <br>
+
+        <div th:insert="fragments/formCampus :: formCampus"></div>
+
+
+
+        <div class="button-container">
+            <button type="submit">Salvar</button>
+            <button type="button" onclick="window.location.href='/campus/list'">Cancelar</button>
+        </div>
+
+        <h2>Cursos Associados:</h2>
+    
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Data de Criação</th>
+                    <th>Descrição</th>			
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="curso : *{cursos}">
+                    <td th:text="${curso.nome}"></td>
+                    <td th:text="${#dates.format(curso.dataCriacao, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${curso.descricao}"></td>			
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+</body>
+</html>

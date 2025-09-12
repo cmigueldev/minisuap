@@ -7,4 +7,5 @@ import br.edu.ifpb.academico.entity.*;
 @Repository
 public interface CampusRepository extends JpaRepository<Campus, Long> {
 
+    boolean existsByNome(String nome);
 }

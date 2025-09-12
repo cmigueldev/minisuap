@@ -10,6 +10,18 @@
 		<div class="sidenav">
 				<a href="/">Início</a>
 				
+			<!-- menu de campus -->
+				<button class="dropdown-btn">
+                    Campus &#x25BC;
+				</button>
+				<div class="dropdown-container">
+					<!-- links para cadastrar -->
+                    <a th:href="@{/campus/form}">Cadastrar</a> 
+					
+					<!-- links para listar -->
+                    <a	th:href="@{/campus/list}">Listar</a>
+				</div>
+
 			<!-- menu de curso -->
 				<button class="dropdown-btn">
                     Curso &#x25BC;

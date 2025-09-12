@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>listar campi</title>
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <script src="/js/menu.js"></script>
+</head>
+<body>
+    <div th:insert="fragments/barraNavegacao :: navbar"></div>
+
+    <h1>LISTAR CAMPI</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>email</th>
+                <th>Data de Criação</th>
+                <th>cidade</th>
+                <th>estado</th>
+				<th>endereço</th>
+				<th>cep</th>
+				<th>telefone</th>						
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="c : ${campus}">
+                <td th:text="${c.nome}"></td>
+                <td th:text="${c.email}"></td>
+                <td th:text="${#dates.format(c.dataCriacao, 'dd/MM/yyyy')}"></td>
+				<td th:text="${c.cidade}"></td>
+				<td th:text="${c.estado}"></td>
+				<td th:text="${c.endereco}"></td>
+				<td th:text="${c.cep}"></td>
+                <td th:text="${c.telefone}"></td>
+                <td>
+                    <a th:href="@{'/campus/edit/' + ${c.id}}">Editar</a> |
+                    <a th:href="@{'/campus/delete/' + ${c.id}}" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

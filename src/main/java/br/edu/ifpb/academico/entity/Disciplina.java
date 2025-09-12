@@ -8,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
-@SuppressWarnings("serial")
 @Entity
 @Table(name = "TB_DISCIPLINA")
 public class Disciplina implements Serializable{

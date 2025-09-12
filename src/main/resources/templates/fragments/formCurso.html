@@ -8,7 +8,18 @@
 <body>
     
     <div th:fragment="formCurso" class="form">
-        
+
+        <label for="idCampus">Campus*:</label>
+        <select id="idCampus" th:field="*{campus}">
+           <option value="">--</option>
+           <option th:each="c : ${campi}"
+                   th:value="${c.id}"
+                   th:text="${c.nome}">
+           </option>
+        </select>
+
+        <br>
+
             <label for="idNome">Nome:</label>
             <input type="text" id="idNome" th:field="*{nome}" placeholder="Informe o nome do curso" required/>
             <br>
@@ -24,7 +35,8 @@
             <label for="idDescricao">Descrição:</label>
             <input type="text" id="idDescricao" th:field="*{descricao}" placeholder="Informe a descrição do curso" required/>
             <br>
-
+			
+s
        
     </div>
 </body>

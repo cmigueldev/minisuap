@@ -33,4 +33,8 @@ public class CampusService {
 		CampusRepository.deleteById(id);
 	}
 
+	public boolean existsByNome(String nome) {
+		return CampusRepository.existsByNome(nome);
+	}
+
 }

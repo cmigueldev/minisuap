@@ -19,7 +19,7 @@
                 <th>Código</th>
                 <th>Data de Criação</th>
                 <th>Descrição</th>
-                <th>Ações</th>
+				<th>Campus</th>
             </tr>
         </thead>
         <tbody>
@@ -28,7 +28,8 @@
                 <td th:text="${curso.codigo}"></td>
                 <td th:text="${#dates.format(curso.dataCriacao, 'dd/MM/yyyy')}"></td>
                 <td th:text="${curso.descricao}"></td>
-                <td>
+                <td th:text="${curso.campus.nome}"></td>
+				<td>
                     <a th:href="@{'/curso/edit/' + ${curso.id}}">Editar</a> |
                     <a th:href="@{'/curso/delete/' + ${curso.id}}" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
                 </td>

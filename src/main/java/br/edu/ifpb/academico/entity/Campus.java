@@ -9,8 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
-@SuppressWarnings("serial")
 @Entity
 @Table(name = "TB_CAMPUS")	
 public class Campus {
@@ -19,20 +19,31 @@ public class Campus {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@NotBlank(message = "Nome do Campus é obrigatório")
+	@Column(unique = true, nullable = false)
 	private String nome;
 	
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
 	private String email;
 	
+	@Column( nullable = false)
 	private String cidade;
 	
+	@Column( nullable = false)
 	private String estado;
+
+	@Column( nullable = false)
+	private String endereco;
+
+	@Column( nullable = false)
+	private String cep;
 	
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
 	private String telefone;
 	
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Column(name = "nascimento")
+	@Column(name = "criacao", nullable = false)
 	private Date dataCriacao;
 
 	public Long getId() {
@@ -89,6 +100,22 @@ public class Campus {
 
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	

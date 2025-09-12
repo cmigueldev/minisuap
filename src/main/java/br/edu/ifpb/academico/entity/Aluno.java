@@ -5,13 +5,15 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-@SuppressWarnings("serial")
+import jakarta.validation.constraints.NotNull;
 @Entity
 @Table(name = "TB_ALUNO")
 public class Aluno implements Serializable {
@@ -29,12 +31,15 @@ public class Aluno implements Serializable {
 	@Column(unique = true, nullable = false)
 	private String matricula;
 	
-	//@NotBlank(message = "A data de nascimento do aluno é obrigatória")
+	@NotNull(message = "A data de nascimento do aluno é obrigatória")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "nascimento", nullable = false)
 	private Date dataNascimento;
 	
 	private Double CRE;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private DadosPessoais dados;
 	
 	public Long getId() {
 		return Id;
@@ -65,6 +70,12 @@ public class Aluno implements Serializable {
 	}
 	public void setCRE(Double cRE) {
 		CRE = cRE;
+	}
+	public DadosPessoais getDados() {
+		return dados;
+	}
+	public void setDados(DadosPessoais dados) {
+		this.dados = dados;
 	}
 	
 	

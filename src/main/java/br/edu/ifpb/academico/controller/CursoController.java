@@ -1,5 +1,7 @@
 package br.edu.ifpb.academico.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.edu.ifpb.academico.entity.Campus;
 import br.edu.ifpb.academico.entity.Curso;
+import br.edu.ifpb.academico.service.CampusService;
 import br.edu.ifpb.academico.service.CursoService;
 
 @Controller
@@ -18,15 +22,25 @@ public class CursoController {
 	
 	@Autowired
 	protected CursoService cursoService;
+	@Autowired
+	protected CampusService campusService;
 	
 // formulario de cadastro de curso
 	@GetMapping("/form")
 	public String home(Model model) {
+		campi(model);
 		model.addAttribute("curso", new Curso());
 		return "cadastrarCurso";
 	}
 	
-//Salvar um novo curso no sistema.
+	
+	private void campi(Model model) {
+		List<Campus> campi = campusService.findAll();
+		model.addAttribute("campi", campi);
+	}
+	
+	
+	//Salvar um novo curso no sistema.
 	@PostMapping("save")
 	public String saveCurso(@ModelAttribute Curso curso, Model model) {	
 		// Verifica se o curso já existe pelo código

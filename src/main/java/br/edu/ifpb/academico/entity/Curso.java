@@ -5,14 +5,17 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
-@SuppressWarnings("serial")
+
 @Entity
 @Table(name = "TB_CURSO")
 public class Curso implements Serializable{
@@ -35,6 +38,13 @@ public class Curso implements Serializable{
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "Criacao", nullable = false)
 	private Date dataCriacao;
+
+	@ManyToOne(
+			cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER,
+			optional = false)
+	private Campus campus;
+
 	
 	
 	public Long getId() {
@@ -66,6 +76,12 @@ public class Curso implements Serializable{
 	}
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
+	}
+	public Campus getCampus() {
+		return campus;
+	}
+	public void setCampus(Campus campus) {
+		this.campus = campus;
 	}
 	
 	

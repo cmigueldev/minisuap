@@ -1,5 +1,6 @@
 package br.edu.ifpb.academico.repository;
 
+//import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,6 +11,12 @@ import br.edu.ifpb.academico.entity.*;
 public interface CampusRepository extends JpaRepository<Campus, Long> {
 
     boolean existsByNome(String nome);
+
+    /* 
+    @EntityGraph(attributePaths = "cursos")
+	@Query("SELECT c FROM Campus c WHERE c.id = :id")
+	Campus findByIdWithCursos(@Param("id") Long id);
+    */
 
     // retorna um campus com seus cursos associados
     @Query("SELECT c FROM Campus c LEFT JOIN FETCH c.cursos WHERE c.id = :id")

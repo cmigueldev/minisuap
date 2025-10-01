@@ -57,6 +57,7 @@ public class CursoController {
 //levar para pagina de edição do curso indicado pelo id
 	@GetMapping("/edit/{id}")
 	public String editCurso(@PathVariable Long id, Model model) {
+		campi(model);
 		Curso curso = cursoService.findById(id);
 		model.addAttribute("curso", curso);
 		return "editarCurso";
@@ -85,7 +86,7 @@ public class CursoController {
 	
 //Deletar um curso existente no sistema.
 	@GetMapping("/delete/{id}")
-	public String deleteAluno(@PathVariable Long id, Model model) {
+	public String deleteCurso(@PathVariable Long id, Model model) {
 		cursoService.deleteById(id);
 		model.addAttribute("mensagemSucesso",  "deletado com sucesso!");
 		return listCursos(model);

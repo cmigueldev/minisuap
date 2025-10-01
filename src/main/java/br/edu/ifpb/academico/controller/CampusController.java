@@ -1,5 +1,7 @@
 package br.edu.ifpb.academico.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.edu.ifpb.academico.entity.Campus;
+import br.edu.ifpb.academico.entity.Curso;
 import br.edu.ifpb.academico.service.CampusService;
 @Controller
 @RequestMapping("/campus")
@@ -70,9 +73,18 @@ public class CampusController {
 	//deletar campus
 	@GetMapping("/delete/{id}")
 	public String deleteCampus(@PathVariable Long id, Model model) {
-		campusService.deleteById(id);
-		model.addAttribute("mensagemSucesso", "Campus removido com sucesso");
-		return listCampus(model);
+		List<Curso> cursos = campusService.findByIdWithCursos(id).getCursos();
+		if(cursos != null && !cursos.isEmpty()) {
+			model.addAttribute("mensagemErro", "Não é possível remover o campus, pois existem cursos associados a ele.");
+			model.addAttribute("cursos", cursos);
+			return listCampus(model);
+		}
+		else {
+			campusService.deleteById(id);
+			model.addAttribute("mensagemSucesso", "Campus removido com sucesso");
+			model.addAttribute("cursos", cursos);
+			return listCampus(model);
+		}
 	}
 
 }

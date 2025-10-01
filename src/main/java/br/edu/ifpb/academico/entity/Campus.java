@@ -51,7 +51,6 @@ public class Campus {
 	private Date dataCriacao;
 
 	@OneToMany(
-			cascade = CascadeType.ALL,
 			fetch = FetchType.LAZY,
 			mappedBy = "campus")
 	private List<Curso> cursos;

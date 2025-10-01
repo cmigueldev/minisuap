@@ -19,15 +19,12 @@
 
     <form th:action="@{/curso/edit}" th:object="${curso}" method="post">
         <br>
+        
 
         <input type="hidden" id="idId" th:field="*{id}" />
         <br>
 
         <div th:insert= "fragments/formCurso :: formCurso"></div>
-
-        <h1>Cursos:</h1>
-
-        
 
         <div class="button-container">
             <button type="submit">Salvar</button>

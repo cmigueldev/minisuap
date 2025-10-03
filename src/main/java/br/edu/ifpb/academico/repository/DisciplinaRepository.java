@@ -1,7 +1,6 @@
 package br.edu.ifpb.academico.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import br.edu.ifpb.academico.entity.Disciplina;
 
 public interface DisciplinaRepository extends JpaRepository<Disciplina, Long> {
@@ -14,4 +13,6 @@ public interface DisciplinaRepository extends JpaRepository<Disciplina, Long> {
 	 */
 	boolean existsByCodigo(String codigo);
 
+	// Verifica se existe alguma disciplina associada a um curso específico.
+	boolean existsByCursoId(Long cursoId);
 }

@@ -2,6 +2,7 @@ package br.edu.ifpb.academico.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,6 +13,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -39,13 +41,18 @@ public class Curso implements Serializable{
 	@Column(name = "Criacao", nullable = false)
 	private Date dataCriacao;
 
+	// muitos cursos para um campus
 	@ManyToOne(
 			cascade = CascadeType.ALL,
 			fetch = FetchType.EAGER,
 			optional = false)
 	private Campus campus;
 
-	
+	//um curso tem muitas disciplinas
+	@OneToMany(
+			fetch = FetchType.LAZY,
+			mappedBy = "curso")
+	private List<Disciplina> disciplinas;
 	
 	public Long getId() {
 		return id;
@@ -82,6 +89,12 @@ public class Curso implements Serializable{
 	}
 	public void setCampus(Campus campus) {
 		this.campus = campus;
+	}
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
 	
 	

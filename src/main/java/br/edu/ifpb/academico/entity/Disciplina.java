@@ -2,9 +2,12 @@ package br.edu.ifpb.academico.entity;
 
 import java.io.Serializable;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -35,7 +38,13 @@ public class Disciplina implements Serializable{
 	
 	private String creditos;
 	
-	
+	// muitas disciplinas para um curso
+	@ManyToOne(
+			cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER,
+			optional = false)
+	private Curso curso;
+
 	public Long getId() {
 		return id;
 	}
@@ -71,6 +80,12 @@ public class Disciplina implements Serializable{
 	}
 	public void setCreditos(String creditos) {
 		this.creditos = creditos;
+	}
+	public Curso getCurso() {
+		return curso;
+	}
+	public void setCurso(Curso curso) {
+		this.curso = curso;
 	}
 	
 	

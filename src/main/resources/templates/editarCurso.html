@@ -32,6 +32,34 @@
             <button type="button" onclick="window.location.href='/curso/list'">Cancelar</button>
         </div>
 
+        <h2>Disciplinas Associadas:</h2>
+    
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Código</th>
+                    <th>Carga Horária</th>	
+                    <th>Ementa</th>		
+                    <th>Créditos</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="disciplina : *{disciplinas}">
+                    <td th:text="${disciplina.nome}"></td>
+                    <td th:text="${disciplina.codigo}"></td>
+                    <td th:text="${disciplina.cargaHoraria}"></td>
+                    <td th:text="${disciplina.ementa}"></td>
+                    <td th:text="${disciplina.creditos}"></td>
+                    <td>
+                        <a th:href="@{'/disciplina/edit/' + ${disciplina.id}}">Editar</a> |
+                        <a th:href="@{'/disciplina/delete/' + ${disciplina.id}}" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
     </form>
 </body>
 </html>

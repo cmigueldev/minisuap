@@ -9,6 +9,16 @@
 
     <div th:fragment="formDisciplina" class="form">
 
+            <label for="idCurso">curso*:</label>
+            <select id="idCurso" th:field="*{curso}">
+            <option value="">--</option>
+            <option th:each="c : ${cursos}"
+                    th:value="${c.id}"
+                    th:text="${c.nome}">
+            </option>
+        </select>
+        <br>
+
            <label for="idNome">Nome:</label>
            <input type="text" id="idNome" th:field="*{nome}" placeholder="informe o nome da disciplina" required>
 

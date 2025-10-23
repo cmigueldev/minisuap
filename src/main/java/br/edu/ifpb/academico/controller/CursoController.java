@@ -58,7 +58,7 @@ public class CursoController {
 	@GetMapping("/edit/{id}")
 	public String editCurso(@PathVariable Long id, Model model) {
 		campi(model);
-		Curso curso = cursoService.findById(id);
+		Curso curso = cursoService.findByIdWithDisciplinas(id);
 		model.addAttribute("curso", curso);
 		return "editarCurso";
 	}

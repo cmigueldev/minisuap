@@ -40,7 +40,7 @@ public class Disciplina implements Serializable{
 	
 	// muitas disciplinas para um curso
 	@ManyToOne(
-			cascade = CascadeType.ALL,
+			cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
 			fetch = FetchType.EAGER,
 			optional = false)
 	private Curso curso;

@@ -1,5 +1,7 @@
 package br.edu.ifpb.academico.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+//import br.edu.ifpb.academico.entity.Campus;
+import br.edu.ifpb.academico.entity.Curso;
 import br.edu.ifpb.academico.entity.Disciplina;
+//import br.edu.ifpb.academico.service.CampusService;
+import br.edu.ifpb.academico.service.CursoService;
 import br.edu.ifpb.academico.service.DisciplinaService;
 
 @Controller
@@ -18,13 +24,31 @@ public class DisciplinaController {
 
     @Autowired
     protected DisciplinaService disciplinaService;
+    @Autowired
+    protected CursoService cursoService;
+    //@Autowired
+    //protected CampusService campusService;
 
     // método para exibir o formulário de cadastro
     @GetMapping("/form")
     public String home(Model model) {
+        cursos(model);
+        //campi(model);
         model.addAttribute("disciplina", new Disciplina());
         return "cadastrarDisciplina";
     }
+
+    private void cursos(Model model) {
+		List<Curso> cursos = cursoService.findAll();
+		model.addAttribute("cursos", cursos);
+	}
+
+    /* 
+    private void campi(Model model) {
+        List<Campus> campi = campusService.findAll();
+        model.addAttribute("campi", campi);
+    }
+    */
 
     // método para salvar a disciplina
     @PostMapping("save")
@@ -42,6 +66,8 @@ public class DisciplinaController {
     // método para levar para a pagina de editar a disciplina
     @GetMapping("/edit/{id}")
     public String editDisciplina(@PathVariable Long id, Model model) {
+        cursos(model);
+        //campi(model);
         Disciplina disciplina = disciplinaService.findById(id);
         model.addAttribute("disciplina", disciplina);
         return "editarDisciplina";

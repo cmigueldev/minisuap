@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import br.edu.ifpb.academico.entity.Curso;
 import br.edu.ifpb.academico.repository.CursoRepository;
 
@@ -39,6 +38,9 @@ public class CursoService {
 
 	}
 
-	
-}
+	// retorna um campus com seus cursos associados
+	public Curso findByIdWithDisciplinas(Long id) {
+		return cursoRepository.findByIdWithDisciplinas(id);
+	}
 
+}
